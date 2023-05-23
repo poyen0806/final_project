@@ -1,15 +1,19 @@
 package application.controllers;
 
-import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.geometry.Pos;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -17,7 +21,7 @@ import javafx.util.Duration;
 import javafx.stage.Screen;
 
 public class PopupWindow {
-    private static int duration = 5; // 設定彈出廣告視窗的初始間隔秒數
+    private static double duration = 5; // 設定彈出廣告視窗的初始間隔秒數
     private static boolean isPopupEnabled = true; // 控制彈出式視窗的開關
     static KeyCode[] cheatCode = { // 觸發切換開關的作弊碼序列
             KeyCode.UP, KeyCode.UP, KeyCode.DOWN, KeyCode.DOWN,
@@ -43,12 +47,15 @@ public class PopupWindow {
         Timeline timeline2 = new Timeline(new KeyFrame(Duration.seconds(10), event -> {
             if (duration > 1) {
                 duration --;
-                timeline.stop();
-                timeline.getKeyFrames().setAll(new KeyFrame(Duration.seconds(duration), event2 -> {
-                    showPopup(primaryStage);
-                }));
-                timeline.play();
             }
+            else {
+            	duration = 0.1;
+            }
+            timeline.stop();
+            timeline.getKeyFrames().setAll(new KeyFrame(Duration.seconds(duration), event2 -> {
+                showPopup(primaryStage);
+            }));
+            timeline.play();
         }));
         timeline2.setCycleCount(Animation.INDEFINITE);
         timeline2.play();
@@ -60,18 +67,22 @@ public class PopupWindow {
         // 設定彈出式視窗為模態視窗
         popupStage.initModality(Modality.NONE);
         popupStage.initOwner(primaryStage);
-        popupStage.setTitle("彈出式視窗");
+        popupStage.setTitle("廣告");
 
         VBox vbox = new VBox();
-        vbox.getChildren().add(new Label("這是彈出式視窗"));
+        Label label = new Label("歡迎廣告商置入廣告");
+        label.setFont(Font.font("Microsoft JhengHei", FontWeight.BOLD, 32));
+        vbox.getChildren().add(label);
+        vbox.setAlignment(Pos.CENTER);
 
         Scene popupScene = new Scene(vbox, 400, 300);
         popupScene.addEventFilter(KeyEvent.KEY_PRESSED, event -> handleKeyPressed(event));
         popupStage.setScene(popupScene);
 
         // 設定視窗的坐標位置
-        double x = generateRandomCoordinate(Screen.getPrimary().getVisualBounds().getWidth() - popupStage.getWidth());
-        double y = generateRandomCoordinate(Screen.getPrimary().getVisualBounds().getHeight() - popupStage.getHeight());
+        Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
+        double x = generateRandomCoordinate(screenBounds.getMinX(), screenBounds.getMaxX() - vbox.getWidth());
+        double y = generateRandomCoordinate(screenBounds.getMinY(), screenBounds.getMaxY() - vbox.getHeight());
         popupStage.setX(x);
         popupStage.setY(y);
 
@@ -109,8 +120,7 @@ public class PopupWindow {
         }
     }
 
-    private static double generateRandomCoordinate(double maxCoordinate) {
-        Random random = new Random();
-        return random.nextDouble() * maxCoordinate;
+    private static double generateRandomCoordinate(double min, double max) {
+        return ThreadLocalRandom.current().nextDouble(min, max);
     }
 }
