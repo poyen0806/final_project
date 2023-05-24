@@ -9,10 +9,12 @@ import javafx.stage.Stage;
 
 public class CreateTask {
 	
+	private Parent root;
+	
 	public void start(Stage primaryStage) throws Exception{
 	
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/views/CreateMission.fxml"));
-		Parent root = loader.load();
+		root = loader.load();
 		
 		Scene scene = new Scene(root);
 		
@@ -26,5 +28,9 @@ public class CreateTask {
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Task Planner");
 		primaryStage.showAndWait();
+	}
+	
+	public Parent getRoot() {
+		return root;
 	}
 }

@@ -109,8 +109,13 @@ public class TaskBarChart {
           ResultSet rs = statement.executeQuery("select * from task_db");
           while (rs.next()) {
               // 从数据库中获取任务信息
-              LocalTime startTime = LocalTime.of(Integer.parseInt(rs.getString("hr1")), Integer.parseInt(rs.getString("mn1")));
-              LocalTime endTime = LocalTime.of(Integer.parseInt(rs.getString("hr2")), Integer.parseInt(rs.getString("mn2")));
+        	  int hr1 = rs.getInt("hr1");
+        	  int mn1 = rs.getInt("mn1");
+        	  int hr2 = rs.getInt("hr2");
+        	  int mn2 = rs.getInt("mn2");
+        	  
+        	  LocalTime startTime = LocalTime.of(hr1, mn1);
+        	  LocalTime endTime = LocalTime.of(hr2, mn2);
               String colorString = rs.getString("color");
               String location = rs.getString("place");
               String description = rs.getString("mission");

@@ -1,5 +1,5 @@
 module final_project {
-    requires javafx.controls;
+    requires transitive javafx.controls;
     requires transitive javafx.graphics;
 	requires javafx.fxml;
 	requires java.sql;
