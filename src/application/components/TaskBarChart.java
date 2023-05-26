@@ -1,9 +1,11 @@
 package application.components;
 
+import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -84,11 +86,21 @@ public class TaskBarChart {
     }
     
     private void showTaskDetails(Task task) {
-        String time = task.getStartTime().toString() + " - " + task.getEndTime().toString();
-        String location = task.getLocation();
-        String description = task.getDescription();
+    	Stage detailStage = new Stage();
+    	detailStage.initModality(Modality.NONE);
 
-        DetailView.showEventDetails(time, location, description);
+        Pane detailViewPane = new Pane();
+
+        DetailView detailView = new DetailView();
+        try {
+        	detailView.start(detailStage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        detailViewPane.getChildren().add(detailView.getRoot());
+        detailStage.setScene(new Scene(detailViewPane));
+        detailStage.show();
     }
    
     public Pane getView() {
