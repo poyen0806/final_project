@@ -2,6 +2,7 @@ package application.controllers;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
@@ -23,6 +24,8 @@ public class Controller implements Initializable{
     @FXML
     private TextField textfield2;
     @FXML
+    private ColorPicker colorPicker;
+    @FXML
     private Button button;
     @FXML
     private ChoiceBox<String> choicebox1;
@@ -33,6 +36,7 @@ public class Controller implements Initializable{
     @FXML
     private ChoiceBox<String> choicebox4;
     
+    
     private String[] hr = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"};
     private String[] mn = {"00", "30"};
     String text1;
@@ -41,6 +45,7 @@ public class Controller implements Initializable{
     String mn_str;
     String hr_str2;
     String mn_str2;
+    String color;
     
     public void closeScene(ActionEvent event, Stage stage) {
 	    stage.close();
@@ -52,13 +57,14 @@ public class Controller implements Initializable{
     	mn_str = choicebox2.getValue();
     	hr_str2 = choicebox3.getValue();
     	mn_str2 = choicebox4.getValue();
+    	color = colorPicker.getValue().toString();
     	Connection connection = null;
         try
         {
           connection = DriverManager.getConnection("jdbc:sqlite:task_db.db");
           Statement statement = connection.createStatement();
           statement.setQueryTimeout(30);  // set timeout to 30 sec.
-          statement.executeUpdate("INSERT INTO task_db (mission, place, hr1, mn1, hr2, mn2, is_deleted) VALUES ('" + text1 + "', '" + text2 + "', '" + hr_str + "', '" + mn_str + "', '" + hr_str2 + "', '" + mn_str2 + "', 0)");
+          statement.executeUpdate("INSERT INTO task_db (mission, place, hr1, mn1, hr2, mn2, is_deleted, color) VALUES ('" + text1 + "', '" + text2 + "', '" + hr_str + "', '" + mn_str + "', '" + hr_str2 + "', '" + mn_str2 + "', 0, '" + color + "')");
           System.out.println("data added");
         }
         catch(SQLException e)
