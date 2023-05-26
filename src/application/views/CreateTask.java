@@ -27,7 +27,7 @@ public class CreateTask {
 		primaryStage.initModality(Modality.NONE);
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Task Planner");
-		primaryStage.showAndWait();
+		primaryStage.show();
 	}
 	
 	public Parent getRoot() {

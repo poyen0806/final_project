@@ -80,7 +80,7 @@ public class CalendarAppView {
 
         createTaskPane.getChildren().add(createTask.getRoot()); // 将CreateTask的root添加到createTaskPane
         createTaskStage.setScene(new Scene(createTaskPane));
-        createTaskStage.showAndWait();
+        createTaskStage.show();
     }
 
     public BorderPane getView() {
