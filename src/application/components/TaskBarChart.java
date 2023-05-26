@@ -51,15 +51,15 @@ public class TaskBarChart {
             taskBar.setFill(task.getColor()); // 設置Task Bar的顏色
 
             // 计算任务条的位置
-            double startY = startMinutes + (i == 0 ? 30 : 35);
-            double endY = endMinutes  + (i == 0 ? 30 : 45);
+            double startY = startMinutes + (i == 0 ? 20 : 25);
+            double endY = endMinutes  + (i == 0 ? 20 : 35);
             
             // 定位Task Bar
             taskBar.setLayoutX(TIME_LABEL_WIDTH);
             taskBar.setLayoutY(startY);
 
             // 根据任务的持续时间调整Task Bar的長度
-            taskBar.setHeight(endY - startY);
+            taskBar.setHeight((endMinutes - startMinutes != 0) ? endY - startY : 0);
 
             // Check for overlapping tasks
             for (int j = 0; j < i; j++) {

@@ -21,6 +21,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+
 import application.components.TaskBarChart;
 
 public class CalendarAppView {
@@ -35,7 +36,6 @@ public class CalendarAppView {
     private TaskBarChart taskBarChart = new TaskBarChart(); // 任務Bar
 
     public CalendarAppView(Stage stage) {
-
         createTaskButton = new Button("Create Task");
         createTaskButton.setOnAction(event -> {
             try {
