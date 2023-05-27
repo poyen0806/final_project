@@ -1,5 +1,7 @@
 package application.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -29,6 +31,7 @@ public class PopupWindow {
             KeyCode.B, KeyCode.A
         };
     static int currentIndex = 0; // 當前已輸入的作弊碼序列索引
+    private static List<Stage> openPopups = new ArrayList<>();
 
 	public static void start(Stage primaryStage) {
         startTimer(primaryStage);
@@ -63,6 +66,7 @@ public class PopupWindow {
 
     private static void showPopup(Stage primaryStage) {
         Stage popupStage = new Stage();
+        openPopups.add(popupStage);
 
         // 設定彈出式視窗為模態視窗
         popupStage.initModality(Modality.NONE);
@@ -105,6 +109,12 @@ public class PopupWindow {
             if (currentIndex == cheatCode.length) {
                 togglePopupEnabled(); // 觸發切換彈出式視窗開關
                 currentIndex = 0;
+                
+                // 关闭所有弹出窗口
+                for (Stage popup : openPopups) {
+                    popup.close();
+                }
+                openPopups.clear();
             }
         } else {
             currentIndex = 0;

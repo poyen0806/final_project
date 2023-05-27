@@ -11,7 +11,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) {
-        CalendarAppView calendarAppView = new CalendarAppView(); // 主視窗
+        CalendarAppView calendarAppView = new CalendarAppView(stage); // 主視窗
 
         // 設置場景並顯示舞台
         Scene scene = new Scene(calendarAppView.getView(), calendarAppView.getWidth(), calendarAppView.getHeight());
