@@ -91,7 +91,7 @@ public class TaskBarChart {
 
         Pane detailViewPane = new Pane();
 
-        DetailView detailView = new DetailView();
+        DetailView detailView = new DetailView(task);
         try {
         	detailView.start(detailStage);
         } catch (Exception e) {
