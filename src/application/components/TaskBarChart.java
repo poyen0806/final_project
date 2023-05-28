@@ -21,11 +21,12 @@ import application.views.DetailView;
 public class TaskBarChart {
 
     private static final int TIME_LABEL_WIDTH = 50;
-
+    private Stage calendar;
     private Pane view;
 
-    public TaskBarChart() {
+    public TaskBarChart(Stage calendar) {
         view = createTaskBarChart();
+        this.calendar = calendar;
     }
 
     private Pane createTaskBarChart() {
@@ -93,7 +94,7 @@ public class TaskBarChart {
 
         DetailView detailView = new DetailView(task);
         try {
-        	detailView.start(detailStage);
+        	detailView.start(detailStage, calendar);
         } catch (Exception e) {
             e.printStackTrace();
         }

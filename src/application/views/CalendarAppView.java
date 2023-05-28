@@ -32,10 +32,10 @@ public class CalendarAppView {
     private BorderPane view;
     private Button createTaskButton;
     private Button clearTaskButton;
-    private TimeAxis timeAxis = new TimeAxis(); // 時間軸
-    private TaskBarChart taskBarChart = new TaskBarChart(); // 任務Bar
 
     public CalendarAppView(Stage stage) {
+    	TimeAxis timeAxis = new TimeAxis(); // 時間軸
+        TaskBarChart taskBarChart = new TaskBarChart(stage); // 任務Bar
         createTaskButton = new Button("Create Task");
         createTaskButton.setOnAction(event -> {
             try {

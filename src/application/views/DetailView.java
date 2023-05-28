@@ -18,7 +18,7 @@ public class DetailView {
 	public DetailView(Task task) {
         this.task = task;
     }
-	public void start(Stage primaryStage) throws Exception {
+	public void start(Stage primaryStage, Stage calendar) throws Exception {
     	FXMLLoader loader = new FXMLLoader(getClass().getResource("/application/views/DetailView.fxml"));
     	root = loader.load();
 		
@@ -28,7 +28,7 @@ public class DetailView {
 		cn.setTask(task);
 		cn.getButton().setOnAction(event->{
 			cn.submit(event);
-			cn.closeScene(event, primaryStage);
+			cn.closeScene(event, primaryStage, calendar);
 		});
 		
         scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> PopupWindow.handleKeyPressed(event));

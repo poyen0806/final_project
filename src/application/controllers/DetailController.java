@@ -1,15 +1,18 @@
 package application.controllers;
 
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 import java.sql.DriverManager;
 import java.sql.Statement;
 
 import application.models.Task;
+import application.views.CalendarAppView;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
@@ -48,8 +51,15 @@ public class DetailController{
         System.out.println(task.getStartTime());
         System.out.println(task.getEndTime());
     }
-	public void closeScene(ActionEvent event, Stage stage) {
+	public void closeScene(ActionEvent event, Stage stage, Stage calendar) {
 	    stage.close();
+	    calendar.close();
+    	CalendarAppView calendarAppView = new CalendarAppView(stage);
+    	Scene scene = new Scene(calendarAppView.getView(), calendarAppView.getWidth(), calendarAppView.getHeight());
+    	scene.addEventFilter(KeyEvent.KEY_PRESSED, event2 -> PopupWindow.handleKeyPressed(event2));
+    	stage.setScene(scene);
+        stage.setTitle("Calendar App");
+        stage.show();
 	}
 	public Button getButton() {
     	return sendButton;
