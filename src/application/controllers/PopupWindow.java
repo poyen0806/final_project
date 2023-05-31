@@ -2,20 +2,20 @@ package application.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
+
+import application.views.CourseView;
+import application.views.IceCreamView;
+import application.views.StoreView;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -65,28 +65,37 @@ public class PopupWindow {
     }
 
     private static void showPopup(Stage primaryStage) {
+    	Scene popupScene = null;
         Stage popupStage = new Stage();
         openPopups.add(popupStage);
 
         // 設定彈出式視窗為模態視窗
         popupStage.initModality(Modality.NONE);
         popupStage.initOwner(primaryStage);
-        popupStage.setTitle("廣告");
+        popupStage.setTitle("這是一個廣告視窗");
 
-        VBox vbox = new VBox();
-        Label label = new Label("歡迎廣告商置入廣告");
-        label.setFont(Font.font("Microsoft JhengHei", FontWeight.BOLD, 32));
-        vbox.getChildren().add(label);
-        vbox.setAlignment(Pos.CENTER);
+        Random random = new Random();
+        int randomIndex = random.nextInt(3);
 
-        Scene popupScene = new Scene(vbox, 400, 300);
+        if (randomIndex == 0) {
+            IceCreamView iceCreamView = new IceCreamView();
+            popupScene = iceCreamView.getScene();
+        } 
+        else if (randomIndex == 1) {
+            StoreView storeView = new StoreView();
+            popupScene = storeView.getScene();
+        }
+        else if (randomIndex == 2) {
+            CourseView courseView = new CourseView();
+            popupScene = courseView.getScene();
+        }
         popupScene.addEventFilter(KeyEvent.KEY_PRESSED, event -> handleKeyPressed(event));
         popupStage.setScene(popupScene);
 
         // 設定視窗的坐標位置
         Rectangle2D screenBounds = Screen.getPrimary().getVisualBounds();
-        double x = generateRandomCoordinate(screenBounds.getMinX(), screenBounds.getMaxX() - vbox.getWidth());
-        double y = generateRandomCoordinate(screenBounds.getMinY(), screenBounds.getMaxY() - vbox.getHeight());
+        double x = generateRandomCoordinate(screenBounds.getMinX(), screenBounds.getMaxX());
+        double y = generateRandomCoordinate(screenBounds.getMinY(), screenBounds.getMaxY());
         popupStage.setX(x);
         popupStage.setY(y);
 
@@ -131,6 +140,14 @@ public class PopupWindow {
     }
 
     private static double generateRandomCoordinate(double min, double max) {
-        return ThreadLocalRandom.current().nextDouble(min, max);
+    	double coordinate = ThreadLocalRandom.current().nextDouble(min, max);
+        double screenWidth = max - min;
+        
+        // 如果座標超出螢幕範圍，進行調整
+        if (coordinate < min || coordinate > max - screenWidth / 4) {
+            coordinate = min + screenWidth / 4; // 將座標調整到螢幕內的一部分
+        }
+        
+        return coordinate;
     }
 }
