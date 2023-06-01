@@ -7,6 +7,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import application.views.CourseView;
 import application.views.IceCreamView;
+import application.views.PosterView;
 import application.views.StoreView;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -75,7 +76,7 @@ public class PopupWindow {
         popupStage.setTitle("這是一個廣告視窗");
 
         Random random = new Random();
-        int randomIndex = random.nextInt(3);
+        int randomIndex = random.nextInt(4);
 
         if (randomIndex == 0) {
             IceCreamView iceCreamView = new IceCreamView();
@@ -88,6 +89,10 @@ public class PopupWindow {
         else if (randomIndex == 2) {
             CourseView courseView = new CourseView();
             popupScene = courseView.getScene();
+        }
+        else if (randomIndex == 3) {
+            PosterView posterView = new PosterView();
+            popupScene = posterView.getScene();
         }
         popupScene.addEventFilter(KeyEvent.KEY_PRESSED, event -> handleKeyPressed(event));
         popupStage.setScene(popupScene);
