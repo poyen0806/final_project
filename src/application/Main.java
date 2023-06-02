@@ -19,8 +19,9 @@ public class Main extends Application {
         // 添加事件過濾器，用於處理按鍵事件，即輸入↑↑↓↓←→←→BA會開關彈出廣告視窗功能
         scene.addEventFilter(KeyEvent.KEY_PRESSED, event -> PopupWindow.handleKeyPressed(event));
         
+        scene.getStylesheets().add(Main.class.getResource("/application/css/mainPage.css").toExternalForm());
         stage.setScene(scene);
-        stage.setTitle("Calendar App");
+        stage.setTitle("Task Planner");
         stage.show();
         
         // 啟動彈出廣告視窗功能

@@ -45,11 +45,11 @@ public class DetailController{
 		place.setText("Location: " + placeStr);
 		mission.setText("Task: " + missionStr);
 		colorPicker.setValue(task.getColor());
-        System.out.println(task.getDescription());
-        System.out.println(task.getLocation());
-        System.out.println(task.getColor());
-        System.out.println(task.getStartTime());
-        System.out.println(task.getEndTime());
+//        System.out.println(task.getDescription());
+//        System.out.println(task.getLocation());
+//        System.out.println(task.getColor());
+//        System.out.println(task.getStartTime());
+//        System.out.println(task.getEndTime());
     }
 	public void closeScene(ActionEvent event, Stage stage, Stage calendar) {
 	    stage.close();

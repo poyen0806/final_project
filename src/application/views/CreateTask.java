@@ -2,6 +2,7 @@ package application.views;
 
 import java.util.Random;
 
+import application.Main;
 import application.controllers.Controller;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
@@ -34,10 +35,11 @@ public class CreateTask {
 		
 		Controller cn = loader.getController();
 		cn.getButton().setOnAction(event->{
-			cn.submit(event);
-			cn.closeScene(event, primaryStage);
+			if(cn.submit(event).equals("success")) {
+				cn.closeScene(event, primaryStage);
+			}
 		});
-	
+		
 		primaryStage.initModality(Modality.NONE);
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Task Planner");

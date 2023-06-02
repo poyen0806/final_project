@@ -1,5 +1,7 @@
 package application.controllers;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ColorPicker;
@@ -50,7 +52,7 @@ public class Controller implements Initializable{
     public void closeScene(ActionEvent event, Stage stage) {
 	    stage.close();
 	}
-    public void submit(ActionEvent event) {
+    public String submit(ActionEvent event) {
     	text1 = textfield1.getText();
     	text2 = textfield2.getText();
     	hr_str = choicebox1.getValue();
@@ -58,6 +60,20 @@ public class Controller implements Initializable{
     	hr_str2 = choicebox3.getValue();
     	mn_str2 = choicebox4.getValue();
     	color = colorPicker.getValue().toString();
+    	int hr_int = Integer.parseInt(hr_str);
+    	int hr_int2 = Integer.parseInt(hr_str2);
+    	int mn_int = Integer.parseInt(mn_str);
+    	int mn_int2 = Integer.parseInt(mn_str2);
+    	if ((hr_int * 60 + mn_int) >= (hr_int2 * 60 + mn_int2 )) {
+            // Display an alert indicating the failure
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Submit Failed");
+            alert.setHeaderText("The start time must be earlier then the end time");
+            alert.setContentText("please modify your time section");
+            alert.showAndWait();
+            return "failed"; // Exit the method since submission failed
+        }
+    	
     	Connection connection = null;
         try
         {
@@ -86,6 +102,7 @@ public class Controller implements Initializable{
             System.err.println(e.getMessage());
           }
         }
+        return "success";
     }
     public Button getButton() {
     	return button;
