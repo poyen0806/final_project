@@ -2,13 +2,8 @@ package application.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
-
 import application.views.CourseView;
-import application.views.IceCreamView;
-import application.views.PosterView;
-import application.views.StoreView;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
@@ -75,25 +70,9 @@ public class PopupWindow {
         popupStage.initOwner(primaryStage);
         popupStage.setTitle("這是一個廣告視窗");
 
-        Random random = new Random();
-        int randomIndex = random.nextInt(4);
-
-        if (randomIndex == 0) {
-            IceCreamView iceCreamView = new IceCreamView();
-            popupScene = iceCreamView.getScene();
-        } 
-        else if (randomIndex == 1) {
-            StoreView storeView = new StoreView();
-            popupScene = storeView.getScene();
-        }
-        else if (randomIndex == 2) {
-            CourseView courseView = new CourseView();
-            popupScene = courseView.getScene();
-        }
-        else if (randomIndex == 3) {
-            PosterView posterView = new PosterView();
-            popupScene = posterView.getScene();
-        }
+        CourseView courseView = new CourseView();
+        popupScene = courseView.getScene();
+     
         popupScene.addEventFilter(KeyEvent.KEY_PRESSED, event -> handleKeyPressed(event));
         popupStage.setScene(popupScene);
 
