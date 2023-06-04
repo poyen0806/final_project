@@ -19,7 +19,7 @@ import javafx.util.Duration;
 import javafx.stage.Screen;
 
 public class PopupWindow {
-    private static double duration = 5; // 設定彈出廣告視窗的初始間隔秒數
+    private static double duration = 20; // 設定彈出廣告視窗的初始間隔秒數
     private static boolean isPopupEnabled = true; // 控制彈出式視窗的開關
     static KeyCode[] cheatCode = { // 觸發切換開關的作弊碼序列
             KeyCode.UP, KeyCode.UP, KeyCode.DOWN, KeyCode.DOWN,
@@ -43,21 +43,39 @@ public class PopupWindow {
         timeline.setCycleCount(Animation.INDEFINITE);
         timeline.play();
         
-        Timeline timeline2 = new Timeline(new KeyFrame(Duration.seconds(10), event -> {
-            if (duration > 1) {
-                duration --;
-            }
-            else {
-            	duration = 0.1;
-            }
-            timeline.stop();
-            timeline.getKeyFrames().setAll(new KeyFrame(Duration.seconds(duration), event2 -> {
-                showPopup(primaryStage);
+        if(duration == 20) {
+        	Timeline timeline2 = new Timeline(new KeyFrame(Duration.seconds(60), event -> {
+                duration = 5;
+                timeline.stop();
+                timeline.getKeyFrames().setAll(new KeyFrame(Duration.seconds(duration), event2 -> {
+                    showPopup(primaryStage);
+                }));
+                timeline.play();
             }));
-            timeline.play();
-        }));
-        timeline2.setCycleCount(Animation.INDEFINITE);
-        timeline2.play();
+            timeline2.play();
+        }
+        else if(duration == 5) {
+        	Timeline timeline2 = new Timeline(new KeyFrame(Duration.seconds(20), event -> {
+                duration = 1;
+                timeline.stop();
+                timeline.getKeyFrames().setAll(new KeyFrame(Duration.seconds(duration), event2 -> {
+                    showPopup(primaryStage);
+                }));
+                timeline.play();
+            }));
+            timeline2.play();
+        }
+        else if(duration == 1) {
+        	Timeline timeline2 = new Timeline(new KeyFrame(Duration.seconds(10), event -> {
+                duration = 0.1;
+                timeline.stop();
+                timeline.getKeyFrames().setAll(new KeyFrame(Duration.seconds(duration), event2 -> {
+                    showPopup(primaryStage);
+                }));
+                timeline.play();
+            }));
+            timeline2.play();
+        }
     }
 
     private static void showPopup(Stage primaryStage) {
