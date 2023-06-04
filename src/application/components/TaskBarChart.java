@@ -1,6 +1,12 @@
 package application.components;
 
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -31,6 +37,17 @@ public class TaskBarChart {
 
     private Pane createTaskBarChart() {
         Pane taskContainer = new Pane();
+        Image image = new Image(getClass().getResourceAsStream("/application/images/bg.jpg"));
+        BackgroundImage backgroundImage = new BackgroundImage(
+                image,
+                BackgroundRepeat.NO_REPEAT,     // 设置重复行为
+                BackgroundRepeat.NO_REPEAT,
+                BackgroundPosition.DEFAULT,     // 设置位置
+                BackgroundSize.DEFAULT);        // 设置大小
+        Background bg = new Background(backgroundImage);
+        taskContainer.setPrefWidth(620);
+        taskContainer.setPrefHeight(1440);
+        taskContainer.setBackground(bg);
 
         // 生成一天內的任務範例
         List<Task> tasks = generateTasks();

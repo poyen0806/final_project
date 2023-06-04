@@ -22,8 +22,6 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import application.components.TimeAxis;
 import application.controllers.PopupWindow;
-
-import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -33,7 +31,6 @@ import application.Main;
 import application.components.TaskBarChart;
 
 public class CalendarAppView {
-	//private Image catPawImage = new Image(getClass().getResource("/application/images/catPaw.png").toExternalForm());
     private static final int CONTAINER_WIDTH = 672;
     private static final int CONTAINER_HEIGHT = 660;
 
@@ -74,24 +71,6 @@ public class CalendarAppView {
 
         // 创建一个BorderPane作为整体布局容器
         view = new BorderPane();
-        //
-        
-        try {
-        	Image image = new Image(getClass().getResourceAsStream("/application/images/bg.jpg"));
-        	
-        	BackgroundImage backgroundImage = new BackgroundImage(
-                    image,
-                    BackgroundRepeat.NO_REPEAT,     // Set the repeat behavior
-                    BackgroundRepeat.NO_REPEAT,
-                    BackgroundPosition.DEFAULT,     // Set the position
-                    BackgroundSize.DEFAULT);        // Set the size
-        	Background background = new Background(backgroundImage);
-        	view.setBackground(background);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        
-        
         view.setPrefWidth(CONTAINER_WIDTH);
         view.setPrefHeight(CONTAINER_HEIGHT);
         view.setCenter(scrollPane); // 将ScrollPane放置在中心
