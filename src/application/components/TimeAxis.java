@@ -7,7 +7,6 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-
 import java.time.LocalTime;
 
 public class TimeAxis {
@@ -27,7 +26,7 @@ public class TimeAxis {
         timeAxis.setSpacing(0);
         timeAxis.setPadding(new Insets(10, 0, 0, 0));
         timeAxis.setPrefWidth(TIME_LABEL_WIDTH);
-        timeAxis.setBackground(new Background(new BackgroundFill(Color.web("#003366"), CornerRadii.EMPTY, Insets.EMPTY)));
+        timeAxis.setBackground(new Background(new BackgroundFill(Color.web("#F5F5F5"), CornerRadii.EMPTY, Insets.EMPTY)));
 
         // Create the time labels
         for (int i = 0; i < MINUTES_IN_DAY; i += 30) {
@@ -36,7 +35,8 @@ public class TimeAxis {
             label.setPrefWidth(TIME_LABEL_WIDTH);
             label.setPrefHeight(HOUR_HEIGHT / 2);
             label.setLayoutY(i - label.getHeight() / 2);
-            label.setTextFill(Color.WHITE);
+            String labelStyle = "-fx-font-family: 'Helvetica';" + "-fx-text-fill: #333333;" + "-fx-font-size: 14px";
+            label.setStyle(labelStyle);
             timeAxis.getChildren().add(label);
         }
 

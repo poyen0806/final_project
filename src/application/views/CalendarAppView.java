@@ -22,6 +22,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import application.Main;
 import application.components.TaskBarChart;
 
 public class CalendarAppView {
@@ -72,9 +73,9 @@ public class CalendarAppView {
         view.setCenter(scrollPane); // 将ScrollPane放置在中心
 
         // 创建一个HBox作为按钮容器
-        HBox buttonContainer = new HBox(50); // 设置按钮之间的间距为10
+        HBox buttonContainer = new HBox(15); // 设置按钮之间的间距为10
         buttonContainer.setAlignment(Pos.CENTER);
-        buttonContainer.setBackground(new Background(new BackgroundFill(Color.GREY, CornerRadii.EMPTY, Insets.EMPTY)));
+        buttonContainer.setBackground(new Background(new BackgroundFill(Color.web("#003366"), CornerRadii.EMPTY, Insets.EMPTY)));
         buttonContainer.setPadding(new Insets(5));
         buttonContainer.getChildren().addAll(createTaskButton, clearTaskButton);
         view.setTop(buttonContainer);
@@ -94,13 +95,15 @@ public class CalendarAppView {
         }
         
         createTaskPane.getChildren().add(createTask.getRoot()); // 将CreateTask的root添加到createTaskPane
-        createTaskStage.setScene(new Scene(createTaskPane));
+        Scene tpScene = new Scene(createTaskPane);
+        createTaskStage.setScene(tpScene);
         
         // 在createTaskStage关闭时设置一个事件处理程序
         createTaskStage.setOnHiding(event -> {
         	CalendarAppView calendarAppView = new CalendarAppView(stage);
         	Scene scene = new Scene(calendarAppView.getView(), calendarAppView.getWidth(), calendarAppView.getHeight());
         	scene.addEventFilter(KeyEvent.KEY_PRESSED, event2 -> PopupWindow.handleKeyPressed(event2));
+        	scene.getStylesheets().add(Main.class.getResource("/application/css/mainPage.css").toExternalForm());
         	stage.setScene(scene);
             stage.setTitle("Calendar App");
             stage.show();
@@ -140,6 +143,7 @@ public class CalendarAppView {
     	CalendarAppView calendarAppView = new CalendarAppView(stage);
     	Scene scene = new Scene(calendarAppView.getView(), calendarAppView.getWidth(), calendarAppView.getHeight());
     	scene.addEventFilter(KeyEvent.KEY_PRESSED, event2 -> PopupWindow.handleKeyPressed(event2));
+    	scene.getStylesheets().add(Main.class.getResource("/application/css/mainPage.css").toExternalForm());
     	stage.setScene(scene);
         stage.setTitle("Calendar App");
         stage.show();

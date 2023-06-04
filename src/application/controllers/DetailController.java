@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import java.sql.DriverManager;
 import java.sql.Statement;
 
+import application.Main;
 import application.models.Task;
 import application.views.CalendarAppView;
 import javafx.event.ActionEvent;
@@ -57,6 +58,7 @@ public class DetailController{
     	CalendarAppView calendarAppView = new CalendarAppView(stage);
     	Scene scene = new Scene(calendarAppView.getView(), calendarAppView.getWidth(), calendarAppView.getHeight());
     	scene.addEventFilter(KeyEvent.KEY_PRESSED, event2 -> PopupWindow.handleKeyPressed(event2));
+    	scene.getStylesheets().add(Main.class.getResource("/application/css/mainPage.css").toExternalForm());
     	stage.setScene(scene);
         stage.setTitle("Calendar App");
         stage.show();

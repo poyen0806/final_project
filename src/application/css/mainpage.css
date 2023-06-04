@@ -1,3 +1,4 @@
+/* 原版
 .button {
     -fx-font-size: 24px;
     -fx-text-fill: white;
@@ -10,3 +11,51 @@
 .button:hover {
     -fx-background-color: linear-gradient(#2A5058, #61a2b1);
 }
+*/
+
+/* chatgpt升級版
+ .button {
+    -fx-font-size: 24px;
+    -fx-text-fill: white;
+    -fx-font-family: "Serif";
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(#61a2b1, #2A5058);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(#2A5058, #61a2b1);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 10, 0.0 , 0 , 2 );
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.button:pressed {
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+}
+ 
+ */
+ 
+.button {
+    -fx-font-size: 24px;
+    -fx-font-family: "Serif";
+    -fx-font-weight: bold;
+    -fx-padding: 5px 10px;
+    -fx-background-color: transparent;
+    -fx-border-width: 2px;
+    -fx-border-radius: 30px;
+    -fx-text-fill: #2196F3;
+    -fx-cursor: hand;
+    -fx-background-radius: 30px;
+    -fx-effect: dropshadow(gaussian, #2196f3, 30, 0, 0, 0);
+}
+
+.button:hover {
+    -fx-background-color: linear-gradient(to bottom, #2196F3, #64B5F6);
+    -fx-text-fill: white;
+}
+
