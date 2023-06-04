@@ -5,9 +5,14 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
@@ -17,6 +22,8 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import application.components.TimeAxis;
 import application.controllers.PopupWindow;
+
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -26,7 +33,7 @@ import application.Main;
 import application.components.TaskBarChart;
 
 public class CalendarAppView {
-
+	//private Image catPawImage = new Image(getClass().getResource("/application/images/catPaw.png").toExternalForm());
     private static final int CONTAINER_WIDTH = 672;
     private static final int CONTAINER_HEIGHT = 660;
 
@@ -67,7 +74,24 @@ public class CalendarAppView {
 
         // 创建一个BorderPane作为整体布局容器
         view = new BorderPane();
-        view.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
+        //
+        
+        try {
+        	Image image = new Image(getClass().getResourceAsStream("/application/images/bg.jpg"));
+        	
+        	BackgroundImage backgroundImage = new BackgroundImage(
+                    image,
+                    BackgroundRepeat.NO_REPEAT,     // Set the repeat behavior
+                    BackgroundRepeat.NO_REPEAT,
+                    BackgroundPosition.DEFAULT,     // Set the position
+                    BackgroundSize.DEFAULT);        // Set the size
+        	Background background = new Background(backgroundImage);
+        	view.setBackground(background);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        
         view.setPrefWidth(CONTAINER_WIDTH);
         view.setPrefHeight(CONTAINER_HEIGHT);
         view.setCenter(scrollPane); // 将ScrollPane放置在中心
@@ -105,7 +129,7 @@ public class CalendarAppView {
         	scene.addEventFilter(KeyEvent.KEY_PRESSED, event2 -> PopupWindow.handleKeyPressed(event2));
         	scene.getStylesheets().add(Main.class.getResource("/application/css/mainPage.css").toExternalForm());
         	stage.setScene(scene);
-            stage.setTitle("Calendar App");
+            stage.setTitle("Task Planner");
             stage.show();
         });
         
@@ -145,7 +169,7 @@ public class CalendarAppView {
     	scene.addEventFilter(KeyEvent.KEY_PRESSED, event2 -> PopupWindow.handleKeyPressed(event2));
     	scene.getStylesheets().add(Main.class.getResource("/application/css/mainPage.css").toExternalForm());
     	stage.setScene(scene);
-        stage.setTitle("Calendar App");
+        stage.setTitle("Task Planner");
         stage.show();
     }
 

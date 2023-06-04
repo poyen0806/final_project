@@ -58,7 +58,7 @@ public class DetailController{
     	CalendarAppView calendarAppView = new CalendarAppView(stage);
     	Scene scene = new Scene(calendarAppView.getView(), calendarAppView.getWidth(), calendarAppView.getHeight());
     	scene.addEventFilter(KeyEvent.KEY_PRESSED, event2 -> PopupWindow.handleKeyPressed(event2));
-    	scene.getStylesheets().add(Main.class.getResource("/application/css/mainPage.css").toExternalForm());
+    	scene.getStylesheets().add(Main.class.getResource("/application/css/mainpage.css").toExternalForm());
     	stage.setScene(scene);
         stage.setTitle("Calendar App");
         stage.show();

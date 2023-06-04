@@ -33,6 +33,7 @@ public class CreateTask {
 		
 		Scene scene = new Scene(root);
 		
+		scene.getStylesheets().add(getClass().getResource("/application/css/mainpage.css").toExternalForm());
 		Controller cn = loader.getController();
 		cn.getButton().setOnAction(event->{
 			if(cn.submit(event).equals("success")) {
