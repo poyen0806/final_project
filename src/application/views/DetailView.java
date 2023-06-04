@@ -1,13 +1,18 @@
 package application.views;
 
 
+import java.util.Random;
+
 import application.controllers.DetailController;
 import application.controllers.PopupWindow;
 import application.models.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class DetailView {
@@ -24,6 +29,13 @@ public class DetailView {
 		
 		Scene scene = new Scene(root);
 		
+		Random random = new Random();
+        int randomNumber = random.nextInt(100);
+
+        if (randomNumber <= 20) {
+            addImageToScene(scene);
+        }
+		
 		DetailController cn = loader.getController();
 		cn.setTask(task);
 		cn.getButton().setOnAction(event->{
@@ -35,6 +47,18 @@ public class DetailView {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+	
+	private void addImageToScene(Scene scene) {
+		Image image  = new Image(getClass().getResource("/application/images/player.png").toExternalForm());
+	    ImageView imageView = new ImageView(image);
+
+	    imageView.setX(300 - imageView.getImage().getWidth());
+	    imageView.setY(400 - imageView.getImage().getHeight());
+
+	    AnchorPane rootPane = (AnchorPane) scene.getRoot();
+	    rootPane.getChildren().add(imageView);
+	}
+
 	
 	public Parent getRoot() {
 		return root;

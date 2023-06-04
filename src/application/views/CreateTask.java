@@ -2,7 +2,6 @@ package application.views;
 
 import java.util.Random;
 
-import application.Main;
 import application.controllers.Controller;
 import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
