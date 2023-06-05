@@ -2,6 +2,7 @@ package application.controllers;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.ImageView;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ColorPicker;
@@ -37,6 +38,8 @@ public class Controller implements Initializable{
     private ChoiceBox<String> choicebox3;
     @FXML
     private ChoiceBox<String> choicebox4;
+    @FXML
+    private ImageView myImageView;
     
     
     private String[] hr = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23"};
@@ -48,6 +51,17 @@ public class Controller implements Initializable{
     String hr_str2;
     String mn_str2;
     String color;
+    String buttonStyle = 
+    		"-fx-font-size: 20px;" +
+    	    "-fx-font-family: 'Serif';" +
+    	    "-fx-font-weight: bold;" +
+    	    "-fx-padding: 5px 10px;" +
+    	    "-fx-background-color: linear-gradient(to bottom, #2196F3, #64B5F6);" +
+    	    "-fx-border-width: 2px;" +
+    	    "-fx-border-radius: 30px;" +
+    	    "-fx-text-fill: white;" +
+    	    "-fx-cursor: hand;" +
+    	    "-fx-background-radius: 30px;";
     
     public void closeScene(ActionEvent event, Stage stage) {
 	    stage.close();
@@ -57,8 +71,24 @@ public class Controller implements Initializable{
     	text2 = textfield2.getText();
     	hr_str = choicebox1.getValue();
     	mn_str = choicebox2.getValue();
+    	if(hr_str == null || mn_str == null) {
+    		Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Submit Failed");
+            alert.setHeaderText("Start time cannot be empty");
+            alert.setContentText("please choose your \"From\" section");
+            alert.showAndWait();
+    		return "failed";
+    	}
     	hr_str2 = choicebox3.getValue();
     	mn_str2 = choicebox4.getValue();
+    	if(hr_str2 == null || mn_str2== null) {
+    		Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Submit Failed");
+            alert.setHeaderText("End time cannot be empty");
+            alert.setContentText("please choose your \"To\" section");
+            alert.showAndWait();
+    		return "failed";
+    	}
     	color = colorPicker.getValue().toString();
     	int hr_int = Integer.parseInt(hr_str);
     	int hr_int2 = Integer.parseInt(hr_str2);
@@ -73,6 +103,22 @@ public class Controller implements Initializable{
             alert.showAndWait();
             return "failed"; // Exit the method since submission failed
         }
+    	if(text1.equals("")) {
+    		Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Submit Failed");
+            alert.setHeaderText("Mission cannot be empty");
+            alert.setContentText("please fill in your mission section");
+            alert.showAndWait();
+            return "failed"; // Exit the method since submission failed
+    	}
+    	if(text2.equals("")) {
+    		Alert alert = new Alert(AlertType.ERROR);
+            alert.setTitle("Submit Failed");
+            alert.setHeaderText("Place cannot be empty");
+            alert.setContentText("please fill in your place section");
+            alert.showAndWait();
+            return "failed"; // Exit the method since submission failed
+    	}
     	
     	Connection connection = null;
         try
@@ -117,5 +163,7 @@ public class Controller implements Initializable{
 		choicebox2.getItems().addAll(mn);
 		choicebox3.getItems().addAll(hr);
 		choicebox4.getItems().addAll(mn);
+		button.setStyle(buttonStyle);
+		myImageView.setVisible(true);
 	}
 }

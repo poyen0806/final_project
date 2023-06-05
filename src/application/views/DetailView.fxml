@@ -36,48 +36,58 @@
 <?import javafx.scene.control.ColorPicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.DetailController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="421.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controllers.DetailController">
    <children>
+      <ImageView fitHeight="373.0" fitWidth="300.0" focusTraversable="true" layoutY="63.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/5211331c3267926037327cb79eab9bd8.jpg" />
+         </image>
+      </ImageView>
+      <Label fx:id="place" layoutX="14.0" layoutY="120.0" prefHeight="43.0" prefWidth="202.0" text="Label" textFill="WHITE">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
       <Pane prefHeight="63.0" prefWidth="300.0" style="-fx-background-color: #003366;">
          <children>
-            <Label layoutX="99.0" layoutY="10.0" prefHeight="43.0" prefWidth="102.0" text="Task Detail" textFill="WHITE">
+            <Label layoutX="95.0" layoutY="10.0" prefHeight="43.0" prefWidth="123.0" text="Task Detail" textFill="#2196f3">
                <font>
-                  <Font name="System Bold" size="19.0" />
+                  <Font name="Serif Bold" size="24.0" />
                </font>
             </Label>
          </children>
       </Pane>
-      <Label fx:id="time" layoutX="14.0" layoutY="77.0" prefHeight="43.0" prefWidth="202.0" text="Label" textFill="#003366">
+      <Label fx:id="time" layoutX="14.0" layoutY="77.0" prefHeight="43.0" prefWidth="202.0" text="Label" textFill="#f6f7f8">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="place" layoutX="14.0" layoutY="120.0" prefHeight="43.0" prefWidth="202.0" text="Label" textFill="#003366">
+      <Label fx:id="mission" layoutX="14.0" layoutY="163.0" prefHeight="43.0" prefWidth="202.0" text="Label" textFill="#f6f7f8">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label fx:id="mission" layoutX="14.0" layoutY="163.0" prefHeight="43.0" prefWidth="202.0" text="Label" textFill="#003366">
+      <RadioButton fx:id="deleteButton" layoutX="14.0" layoutY="319.0" mnemonicParsing="false" text="delete" textFill="WHITE">
          <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
-      <RadioButton fx:id="deleteButton" layoutX="14.0" layoutY="319.0" mnemonicParsing="false" text="delete" />
+            <Font name="Serif Bold" size="12.0" />
+         </font></RadioButton>
       <Label layoutX="14.0" layoutY="221.0" prefHeight="32.0" prefWidth="72.0" text="Color：" textFill="#003366">
          <font>
-            <Font size="18.0" />
+            <Font name="Serif Bold" size="18.0" />
          </font>
       </Label>
       <Label layoutX="14.0" layoutY="282.0" text="Delete This Task?" textFill="#003366">
          <font>
-            <Font size="18.0" />
+            <Font name="Serif Bold" size="18.0" />
          </font>
       </Label>
-      <Button fx:id="sendButton" layoutX="128.0" layoutY="362.0" mnemonicParsing="false" onAction="#submit" text="Send" />
+      <Button fx:id="sendButton" layoutX="131.0" layoutY="359.0" mnemonicParsing="false" onAction="#submit" text="Send" />
       <ColorPicker fx:id="colorPicker" layoutX="86.0" layoutY="226.0" />
    </children>
 </AnchorPane>

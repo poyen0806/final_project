@@ -38,14 +38,59 @@ public class DetailController{
 	String missionStr;
 	String colorStr;
 	Task task;
+	String labelStyle = 
+	"-fx-font-family: 'Serif';" 
+	+ "-fx-text-fill: #003366;" 
+	+ "-fx-font-size: 20px;" 
+	+ "-fx-font-weight: bold;" 
+	;
+	
+	String buttonStyle = 
+	"-fx-font-size: 20px;" +
+    "-fx-font-family: 'Serif';" +
+    "-fx-font-weight: bold;" +
+    "-fx-padding: 5px 10px;" +
+    "-fx-background-color: linear-gradient(to bottom, #2196F3, #64B5F6);" +
+    "-fx-border-width: 2px;" +
+    "-fx-border-radius: 30px;" +
+    "-fx-text-fill: white;" +
+    "-fx-cursor: hand;" +
+    "-fx-background-radius: 30px;";
+	
+	String buttonStyle2 = 
+	"-fx-font-size: 14px;" +
+    "-fx-font-family: 'Serif';" +
+    "-fx-font-weight: bold;" +
+    "-fx-padding: 5px 10px;" +
+    "-fx-background-color: transparent;" +
+    "-fx-border-width: 2px;" +
+    "-fx-border-radius: 30px;" +
+    "-fx-text-fill: #003366;" +
+    "-fx-border-color: #003366; "+
+    "-fx-cursor: hand;" +
+    "-fx-background-radius: 30px;";
+	
+	String colorPickerStyle = 
+	"-fx-font-size: 12px;" +
+	"-fx-font-family: 'Serif';" +
+    "-fx-font-weight: bold;" +
+    "-fx-padding: 5px 10px;" +
+    "-fx-text-fill: #003366;" ;
+	
 	public void setTask(Task task) {
         this.task = task;
         placeStr = task.getLocation();
         missionStr = task.getDescription();
         time.setText("Time: " + task.getStartTime() + " ~ "+ task.getEndTime());
+        time.setStyle(labelStyle);
 		place.setText("Location: " + placeStr);
+		place.setStyle(labelStyle);
 		mission.setText("Task: " + missionStr);
+		mission.setStyle(labelStyle);
 		colorPicker.setValue(task.getColor());
+		colorPicker.setStyle(colorPickerStyle);
+		sendButton.setStyle(buttonStyle);
+		deleteButton.setStyle(buttonStyle2);
 //        System.out.println(task.getDescription());
 //        System.out.println(task.getLocation());
 //        System.out.println(task.getColor());
@@ -60,7 +105,7 @@ public class DetailController{
     	scene.addEventFilter(KeyEvent.KEY_PRESSED, event2 -> PopupWindow.handleKeyPressed(event2));
     	scene.getStylesheets().add(Main.class.getResource("/application/css/mainpage.css").toExternalForm());
     	stage.setScene(scene);
-        stage.setTitle("Calendar App");
+        stage.setTitle("Task Planner");
         stage.show();
 	}
 	public Button getButton() {
