@@ -51,6 +51,7 @@ public class TaskBarChart {
 
         // 生成一天內的任務範例
         List<Task> tasks = generateTasks();
+        String taskBarStyle = "-fx-arc-width: 15; -fx-arc-height: 15; -fx-effect: dropshadow(gaussian, #ffffff, 15, 0.5, 0, 0);";
 
         // 按照開始時間和持續時間對任務進行排序
         Collections.sort(tasks);
@@ -67,6 +68,7 @@ public class TaskBarChart {
             Rectangle taskBar = new Rectangle();
             taskBar.setWidth(20); // 設置Task Bar的寬度
             taskBar.setFill(task.getColor()); // 設置Task Bar的顏色
+            taskBar.setStyle(taskBarStyle);
 
             // 计算任务条的位置
             double startY = startMinutes + 22.5 + startMinutes / 30 * 0.375;
