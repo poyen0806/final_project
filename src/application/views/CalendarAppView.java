@@ -35,7 +35,7 @@ public class CalendarAppView {
 
     public CalendarAppView(Stage stage) {
     	TimeAxis timeAxis = new TimeAxis(); // 時間軸
-        TaskBarChart taskBarChart = new TaskBarChart(stage); // 任務Bar
+        TaskBarChart taskBarChart = new TaskBarChart(stage); // Task Bar
         createTaskButton = new Button("Create Task");
         createTaskButton.setOnAction(event -> {
             try {
@@ -54,24 +54,21 @@ public class CalendarAppView {
             }
         });
 
-        // 建立用於時間軸和任務長條圖的容器
+        // 建立用於時間軸和Task Bar的容器
         HBox container = new HBox();
         container.setPrefWidth(CONTAINER_WIDTH);
         container.setBackground(new Background(new BackgroundFill(Color.WHITE, CornerRadii.EMPTY, Insets.EMPTY)));
         container.getChildren().addAll(timeAxis.getView(), taskBarChart.getView());
 
-        // 创建一个ScrollPane，将容器作为其内容
         ScrollPane scrollPane = new ScrollPane(container);
         scrollPane.setFitToWidth(true);
 
-        // 创建一个BorderPane作为整体布局容器
         view = new BorderPane();
         view.setPrefWidth(CONTAINER_WIDTH);
         view.setPrefHeight(CONTAINER_HEIGHT);
-        view.setCenter(scrollPane); // 将ScrollPane放置在中心
+        view.setCenter(scrollPane); // 將ScrollPane放置在中心
 
-        // 创建一个HBox作为按钮容器
-        HBox buttonContainer = new HBox(15); // 设置按钮之间的间距为10
+        HBox buttonContainer = new HBox(15); // 設置按鈕間距為15
         buttonContainer.setAlignment(Pos.CENTER);
         buttonContainer.setBackground(new Background(new BackgroundFill(Color.web("#003366"), CornerRadii.EMPTY, Insets.EMPTY)));
         buttonContainer.setPadding(new Insets(5));
@@ -92,11 +89,11 @@ public class CalendarAppView {
             e.printStackTrace();
         }
         
-        createTaskPane.getChildren().add(createTask.getRoot()); // 将CreateTask的root添加到createTaskPane
+        createTaskPane.getChildren().add(createTask.getRoot());
         Scene tpScene = new Scene(createTaskPane);
         createTaskStage.setScene(tpScene);
         
-        // 在createTaskStage关闭时设置一个事件处理程序
+        // 在CreateTask關閉時重新打開CalendarView
         createTaskStage.setOnHiding(event -> {
         	CalendarAppView calendarAppView = new CalendarAppView(stage);
         	Scene scene = new Scene(calendarAppView.getView(), calendarAppView.getWidth(), calendarAppView.getHeight());

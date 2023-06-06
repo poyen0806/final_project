@@ -40,10 +40,10 @@ public class TaskBarChart {
         Image image = new Image(getClass().getResourceAsStream("/application/images/bg.jpg"));
         BackgroundImage backgroundImage = new BackgroundImage(
                 image,
-                BackgroundRepeat.NO_REPEAT,     // 设置重复行为
+                BackgroundRepeat.NO_REPEAT,     // 設置重複行為
                 BackgroundRepeat.NO_REPEAT,
-                BackgroundPosition.DEFAULT,     // 设置位置
-                BackgroundSize.DEFAULT);        // 设置大小
+                BackgroundPosition.DEFAULT,     // 設置位置
+                BackgroundSize.DEFAULT);        // 設置大小
         Background bg = new Background(backgroundImage);
         taskContainer.setPrefWidth(620);
         taskContainer.setPrefHeight(1440);
@@ -70,7 +70,7 @@ public class TaskBarChart {
             taskBar.setFill(task.getColor()); // 設置Task Bar的顏色
             taskBar.setStyle(taskBarStyle);
 
-            // 计算任务条的位置
+            // 計算Task Bar的位置
             double startY = startMinutes + 22.5 + startMinutes / 30 * 0.375;
             double endY = endMinutes  + 37.5 + endMinutes / 30 * 0.225;
             
@@ -78,27 +78,23 @@ public class TaskBarChart {
             taskBar.setLayoutX(TIME_LABEL_WIDTH);
             taskBar.setLayoutY(startY);
 
-            // 根据任务的持续时间调整Task Bar的長度
+            // 根據任務長度调整Task Bar的長度
             taskBar.setHeight((endMinutes - startMinutes != 0) ? endY - startY : 0);
 
-            // Check for overlapping tasks
+            // 檢查重疊時段的任務
             for (int j = 0; j < i; j++) {
                 Task previousTask = tasks.get(j);
                 int previousEndMinutes = previousTask.getEndTime().toSecondOfDay() / 60;
 
-                // If the tasks overlap
                 if (startMinutes < previousEndMinutes) {
-                    // Update the X position of the task bar
                     double previousTaskX = taskContainer.getChildren().get(j).getLayoutX();
                     taskBar.setLayoutX(previousTaskX + 30);
                 }
             }
 
-            // Add the task bar to the task container
             taskContainer.getChildren().add(taskBar);
-            // Add click event handler to the task bar
             taskBar.setOnMouseClicked(event -> {
-                showTaskDetails(task); // Display the details of the clicked task
+                showTaskDetails(task); // 顯示DetailView
             });
         }
 
@@ -140,7 +136,7 @@ public class TaskBarChart {
           statement.setQueryTimeout(30);  // set timeout to 30 sec.
           ResultSet rs = statement.executeQuery("select * from task_db");
           while (rs.next()) {
-              // 从数据库中获取任务信息
+              // 從資料庫獲取訊息
         	  int hr1 = rs.getInt("hr1");
         	  int mn1 = rs.getInt("mn1");
         	  int hr2 = rs.getInt("hr2");
@@ -152,10 +148,10 @@ public class TaskBarChart {
               String location = rs.getString("place");
               String description = rs.getString("mission");
 
-              // 检查颜色是否为null，如果为null，则使用默认的蓝色
+              // 檢查顏色是否為null，如果為null，则使用默認的蓝色
               Color color = colorString != null ? Color.web(colorString) : Color.BLUE;
 
-              // 创建任务对象并添加到任务列表中
+              // 創建任務，並加入任務表
               Task task = new Task(startTime, endTime, color, location, description);
               tasks.add(task);
           }

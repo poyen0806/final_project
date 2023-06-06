@@ -91,11 +91,6 @@ public class DetailController{
 		colorPicker.setStyle(colorPickerStyle);
 		sendButton.setStyle(buttonStyle);
 		deleteButton.setStyle(buttonStyle2);
-//        System.out.println(task.getDescription());
-//        System.out.println(task.getLocation());
-//        System.out.println(task.getColor());
-//        System.out.println(task.getStartTime());
-//        System.out.println(task.getEndTime());
     }
 	public void closeScene(ActionEvent event, Stage stage, Stage calendar) {
 	    stage.close();
