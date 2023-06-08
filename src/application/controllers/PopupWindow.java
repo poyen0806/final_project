@@ -36,7 +36,7 @@ public class PopupWindow {
 
     private static void startTimer(Stage primaryStage) {
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(duration), event -> {
-            showPopup(primaryStage);
+            if(isPopupEnabled) showPopup(primaryStage);
             times++;
         }));
         timeline.setCycleCount(Animation.INDEFINITE);
@@ -48,7 +48,7 @@ public class PopupWindow {
                 times = 0;
                 timeline.stop();
                 timeline2 = new Timeline(new KeyFrame(Duration.seconds(duration), event -> {
-                    showPopup(primaryStage);
+                	if(isPopupEnabled) showPopup(primaryStage);
                     times++;
                 }));
                 timeline2.setCycleCount(Animation.INDEFINITE);
@@ -58,7 +58,7 @@ public class PopupWindow {
                 times = 0;
                 timeline2.stop();
                 timeline3 = new Timeline(new KeyFrame(Duration.seconds(duration), event -> {
-                    showPopup(primaryStage);
+                	if(isPopupEnabled) showPopup(primaryStage);
                     times++;
                 }));
                 timeline3.setCycleCount(Animation.INDEFINITE);
@@ -68,7 +68,7 @@ public class PopupWindow {
                 times = 0;
                 timeline3.stop();
                 timeline4 = new Timeline(new KeyFrame(Duration.seconds(duration), event -> {
-                    showPopup(primaryStage);
+                	if(isPopupEnabled) showPopup(primaryStage);
                     times++;
                 }));
                 timeline4.setCycleCount(Animation.INDEFINITE);
